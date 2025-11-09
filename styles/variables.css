@@ -1,0 +1,106 @@
+:root {
+  /* =======================================================
+     🎨 GRAY THEME
+     ======================================================= */
+
+  /* ---------- BASE BACKGROUNDS ---------- */
+  --bg-main: #2d2d2d;
+  --bg-panel: #3c3c3c;
+  --bg-alt: #1e1e1e;
+  --bg-chat: #2d2d2d;
+
+  /* ---------- BORDERS & SHADOWS ---------- */
+  --border: #4a4a4a;
+  --border-strong: #6b6b6b;
+  --glass-border: rgba(74, 74, 74, 0.65);
+  --shadow: rgba(0, 0, 0, 0.2);
+  --shadow-strong: rgba(0, 0, 0, 0.4);
+  --border-subtle: var(--border);
+  --border-subtle-strong: var(--border-strong);
+  --shadow-soft: var(--shadow);
+  --shadow-soft-xs: rgba(0, 0, 0, 0.1);
+  --shadow-accent-strong: rgba(0, 0, 0, 0.3);
+
+  /* ---------- TYPOGRAPHY ---------- */
+  --text-main: #e0e0e0;
+  --text-secondary: #b3b3b3;
+  --text-muted: #8c8c8c;
+  --text-inverse: #2d2d2d;
+  --text: var(--text-main);
+  --muted: var(--text-muted);
+  --link-active: #8a8aff;
+  --ui-muted: #7a7a7a;
+  --color-white: #ffffff; /* Definido para compatibilidad */
+
+  /* ---------- ACCENTS ---------- */
+  --accent-solid: #7a7a7a;
+  --accent: linear-gradient(135deg, #6a6a6a, #8a8a8a);
+  --accent-hover: linear-gradient(135deg, #7a7a7a, #9a9a9a);
+  --accent-contrast: #4a4a4a;
+  --accent-secondary: #6a6a6a;
+  --accent-weak: rgba(90, 90, 90, 0.18);
+  --success: #6f8f00;
+  --warning: #b14612;
+  --error: #c82825;
+  --info: #2f7fb8;
+  --accent-a35: rgba(122, 122, 122, 0.35);
+  --accent-a18: rgba(122, 122, 122, 0.18);
+  --accent-gradient: var(--accent);
+
+  /* ---------- METALLIC / SILVER ---------- */
+  --silver: linear-gradient(135deg, #5a5a5a, #4a4a4a);
+
+  /* ---------- GRADIENTS ---------- */
+  --gradient-chat: linear-gradient(135deg, #2d2d2d 0%, #3c3c3c 100%);
+  --gradient-dark-panel: linear-gradient(145deg, #3c3c3c, #2d2d2d);
+  --gradient-primary: var(--accent);
+  --gradient-accent: var(--accent);
+  --gradient-accent-weak: linear-gradient(135deg, rgba(90, 90, 90, 0.16), rgba(122, 122, 122, 0.28));
+  --gradient-sunlit-cream: linear-gradient(135deg, #3c3c3c, #2d2d2d);
+  --gradient-soft-metal: linear-gradient(135deg, #4a4a4a, #3c3c3c);
+  --gradient-warm-mist: linear-gradient(120deg, #3c3c3c, #2d2d2d);
+  --gradient-beige-glow: linear-gradient(145deg, #3c3c3c, #2d2d2d);
+  --menu-card-hover: linear-gradient(135deg, rgba(90, 90, 90, 0.12), rgba(122, 122, 122, 0.25));
+  --button-gradient: #6a6a6a;
+  --input-tray-gradient: linear-gradient(135deg, rgba(60, 60, 60, 0.95), rgba(45, 45, 45, 0.9));
+  --gradient-sidebar-header: var(--bg-panel);
+  --gradient-control-button-hover: var(--accent-weak);
+
+  /* ---------- UI STRUCTURE ---------- */
+  --surface-glass: rgba(74, 74, 74, 0.35);
+  --input-field-bg: #1e1e1e;
+  --button-icon-color: var(--text-secondary);
+  --status-bar-height: 0px;
+  --surface-hover: var(--bg-alt); /* Usar un gris alternativo para hover */
+  --modal-close-bg: var(--bg-alt);
+  --modal-close-border: var(--border);
+  --modal-close-hover-bg: var(--secondary-bg);
+  --chat-control-selected-border: var(--accent-secondary);
+  --chat-control-selected-shadow-inner: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  --chat-control-selected-shadow: var(--shadow-strong);
+  --chat-control-gradient: var(--bg-alt);
+  --chat-control-border: var(--border);
+  --chat-control-hover-border: var(--accent-secondary);
+  --chat-control-shadow: var(--shadow);
+
+  /* ---------- DIMENSIONS & MOTION ---------- */
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-round: 50%;
+  --card-padding: 1rem;
+  --card-aspect-ratio: 16 / 9;
+  --transition-fast: 0.18s ease;
+  --transition: 0.25s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---------- SPACING ---------- */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 20px;
+  --spacing-xl: 24px;
+  --spacing-xxl: 28px;
+}

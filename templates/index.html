@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <base href="../" />
+  <title>Manda</title>
+  <link rel="stylesheet" href="styles/variables.css" />
+  <link rel="stylesheet" href="styles/base.css" />
+  <link rel="stylesheet" href="styles/panel-layout.css" />
+  <link rel="stylesheet" href="styles/sidebar-layout.css" />
+  <link rel="stylesheet" href="styles/sidebar-controls.css" />
+  <link rel="stylesheet" href="styles/model-cards.css" />
+  <link rel="stylesheet" href="styles/navigation-styles.css" />
+  <link rel="stylesheet" href="styles/nav-cards.css" />
+  <link rel="stylesheet" href="styles/chat-list.css" />
+  <link rel="stylesheet" href="styles/buttons.css" />
+  <link rel="stylesheet" href="styles/messages.css" />
+  <link rel="stylesheet" href="styles/floating-controls.css" />
+  <link rel="stylesheet" href="styles/api-cards.css" />
+  <link rel="stylesheet" href="styles/modal-styles.css" />
+  <link rel="stylesheet" href="styles/overlay.css" />
+  <link rel="stylesheet" href="styles/utilities.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
+  <link rel="stylesheet" href="styles/logo-button.css" />
+  <link rel="stylesheet" href="styles/input-tray.css" />
+  <link rel="stylesheet" href="styles/cards.css" />
+  <link rel="stylesheet" href="styles/background.css" />
+  <!-- Dark theme CSS (AMOLED True Black) -->
+  <link rel="stylesheet" href="styles/dark.css" />
+  <link id="theme-stylesheet" rel="stylesheet" href="styles/themes/gray-theme.css" />
+  <link rel="icon" href="components/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.0.6/dist/purify.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/dist/highlight.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" defer></script>
+</head>
+
+<body>
+  <!-- OVERLAY PARA CERRAR SIDEBAR EN MÓVILES -->
+  <div class="sidebar-overlay"></div>
+  <div class="app">
+    <div class="main-layout">
+      <section class="chat-wrap">
+        <main class="messages" id="messages" tabindex="0"></main>
+      </section>
+
+      <aside class="right-panel" aria-labelledby="right-panel-title">
+        <header class="right-panel-header">
+          <div class="right-panel-heading">
+            <h3 id="right-panel-title" class="right-panel-title">API Keys</h3>
+            <span id="api-key-count" class="right-panel-badge" aria-live="polite">0</span>
+          </div>
+          <p class="right-panel-subtitle">Gestiona, renombra y controla el estado de tus claves para los servicios conectados.</p>
+        </header>
+        <div class="right-panel-body">
+          <div id="api-key-container" class="card-grid-system api-key-grid"></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="input-tray-container">
+      <input type="file" id="fileInput" accept=".txt,.md,.pdf,.doc,.docx,image/*,audio/*,video/*" multiple hidden />
+      <div id="attachmentPreview" class="attachment-preview"></div>
+      <div id="sendStatus" class="send-status"></div>
+
+      <button class="tray-btn tray-btn--ghost attach-btn" id="attachBtn" title="Adjuntar" aria-label="Adjuntar archivo">
+        <svg class="tray-icon" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 1 1-2.83-2.83l8.49-8.48" />
+        </svg>
+      </button>
+
+      <textarea id="input" class="input-tray__textarea" placeholder="Escribe un mensaje..." rows="1"></textarea>
+
+      <button class="tray-btn tray-btn--primary send-btn" id="sendBtn" title="Enviar">
+        <img src="components/send-svgrepo-com (6).svg" alt="Enviar mensaje" class="tray-icon send-icon" width="20" height="20">
+        <span class="sr-only">Enviar</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- CHAT LIST SIDEBAR -->
+  <aside id="chat-list-sidebar" class="chat-list-sidebar">
+    <div class="sidebar-shell">
+      <div class="sidebar-top-bar">
+        <h3 class="sidebar-title">Manda Studio</h3>
+      </div>
+
+      <div class="card-navigation-container" data-active-panel="A">
+        <div id="panel-A" class="nav-panel">
+          <div id="nav-card-grid" class="card-grid-system"></div>
+        </div>
+
+        <div id="panel-B" class="nav-panel">
+          <div class="panel-header">
+            <button class="back-button" type="button">←</button>
+            <h3 id="panel-b-title" class="panel-title"></h3>
+          </div>
+          <div class="panel-body">
+            <section id="nav-section-history" class="nav-section" hidden>
+              <div class="section-heading">
+                <button id="new-chat-btn" class="new-chat-btn">+ Nuevo Chat</button>
+                <button id="merge-chats-btn" class="new-chat-btn" disabled>Fusionar chats</button>
+              </div>
+              <div id="chat-list-container" class="chat-list-container"></div>
+            </section>
+
+            <section id="nav-section-params" class="nav-section" hidden>
+              <div id="params-info-container" class="info-panel"></div>
+            </section>
+
+            <section id="nav-section-model" class="nav-section" hidden>
+              <div class="model-cards card-grid-system">
+                <button class="model-card card" type="button" data-model-id="gemini-2.5-pro">
+                  <div class="model-card-header">
+                    <span class="model-card-title">Gemini 2.5 Pro</span>
+                    <span class="model-card-subtitle">Thinking steps avanzados</span>
+                  </div>
+                  <div class="model-card-body">
+                    <p>Modelo insignia con razonamiento profundo, contexto amplio y soporte completo para entradas multimodales.</p>
+                    <div class="model-card-meta">
+                      <span>Alias</span>
+                      <strong>gemini-2.5-pro</strong>
+                    </div>
+                  </div>
+                </button>
+
+                <button class="model-card card" type="button" data-model-id="gemini-flash-latest">
+                  <div class="model-card-header">
+                    <span class="model-card-title">Gemini Flash Latest</span>
+                    <span class="model-card-subtitle">Velocidad y calidad equilibradas</span>
+                  </div>
+                  <div class="model-card-body">
+                    <p>Flash de última generación para agentes y producción en tiempo real con baja latencia.</p>
+                    <div class="model-card-meta">
+                      <span>Alias</span>
+                      <strong>gemini-flash-latest</strong>
+                    </div>
+                  </div>
+                </button>
+
+                <button class="model-card card" type="button" data-model-id="gemini-flash-lite-latest">
+                  <div class="model-card-header">
+                    <span class="model-card-title">Gemini Flash Lite</span>
+                    <span class="model-card-subtitle">Máxima eficiencia</span>
+                  </div>
+                  <div class="model-card-body">
+                    <p>Variante ligera para despliegues masivos con costes reducidos y respuesta ágil.</p>
+                    <div class="model-card-meta">
+                      <span>Alias</span>
+                      <strong>gemini-flash-lite-latest</strong>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
+              <div id="model-info-container" class="info-panel"></div>
+            </section>
+
+            <section id="nav-section-settings" class="nav-section" hidden>
+              <div class="info-panel">
+                <h4>Configuraciones avanzadas</h4>
+                <p>Configura la apariencia y el comportamiento general de Manda Studio.</p>
+              </div>
+
+              <div class="settings-grid card-grid-system">
+                <article class="settings-card card">
+                  <header>
+                    <h5>Fondo del área de mensajes</h5>
+                    <p>Define una imagen personalizada o un color sólido para la zona de conversación.</p>
+                  </header>
+                  <div class="settings-field">
+                    <label for="cfg-background-image">URL de imagen</label>
+                    <input id="cfg-background-image" type="url" placeholder="https://..." />
+                  </div>
+                  <div class="settings-field">
+                    <label for="cfg-background-opacity">Opacidad</label>
+                    <input id="cfg-background-opacity" type="range" min="0" max="1" step="0.05" value="1" />
+                  </div>
+                </article>
+
+                <article class="settings-card card">
+                  <header>
+                    <h5>Sonidos de notificación</h5>
+                    <p>Gestiona alertas auditivas para nuevos mensajes.</p>
+                  </header>
+                  <div class="settings-field">
+                    <label><input type="checkbox" id="cfg-notification-enabled" checked /> Activar sonidos</label>
+                  </div>
+                  <div class="settings-field">
+                    <label for="cfg-notification-sound">Sonido</label>
+                    <select id="cfg-notification-sound">
+                      <option value="default">Predeterminado</option>
+                      <option value="chime">Campanilla</option>
+                      <option value="pop">Pop</option>
+                      <option value="soft">Suave</option>
+                    </select>
+                  </div>
+                </article>
+
+                <article class="settings-card card">
+                  <header>
+                    <h5>Guardado automático</h5>
+                    <p>Controla la frecuencia de respaldo de tus chats.</p>
+                  </header>
+                  <div class="settings-field">
+                    <label><input type="checkbox" id="cfg-autosave-enabled" checked /> Activar guardado automático</label>
+                  </div>
+                  <div class="settings-field">
+                    <label for="cfg-autosave-interval">Intervalo (min)</label>
+                    <input id="cfg-autosave-interval" type="number" min="1" max="60" step="1" value="5" />
+                  </div>
+                </article>
+
+                <article class="settings-card card">
+                  <header>
+                    <h5>Idioma de la interfaz</h5>
+                    <p>Selecciona el idioma preferido para los textos de la app.</p>
+                  </header>
+                  <div class="settings-field">
+                    <label for="cfg-language">Idioma</label>
+                    <select id="cfg-language">
+                      <option value="es-MX" selected>Español (México)</option>
+                      <option value="es-ES">Español (España)</option>
+                      <option value="en-US">English (US)</option>
+                      <option value="pt-BR">Português (Brasil)</option>
+                      <option value="fr-FR">Français (France)</option>
+                    </select>
+                  </div>
+                </article>
+              </div>
+
+              <div class="info-panel">
+                <h4>Créditos</h4>
+                <p>Desarrollado por Gorba Studio</p>
+                <p>Version 53 Refined</p>
+                <p>2025-10-25</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CUSTOM PROMPT MODAL -->
+  <div id="custom-prompt-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="custom-prompt-close">&times;</span>
+      <div class="modal-body">
+        <h3 id="custom-prompt-title">Ingrese un valor</h3>
+        <input type="text" id="custom-prompt-input" />
+        <div class="modal-actions">
+          <button id="custom-prompt-cancel" class="btn-cancel">Cancelar</button>
+          <button id="custom-prompt-confirm" class="btn-confirm">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING LOGO BUTTON -->
+  <button id="logo-btn" class="floating-btn">
+    <img src="components/new-logo.svg" alt="Manda Studio" width="24" height="24">
+  </button>
+
+  <script src="scripts/index.js" type="module" defer></script>
+  <script src="scripts/sidebar-navigation.js" type="module" defer></script>
+  <script src="scripts/logo-button.js" type="module" defer></script>
+  <script src="scripts/input-tray.js" type="module" defer></script>
+</body>
+</html>

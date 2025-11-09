@@ -1,0 +1,265 @@
+.chat-list-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--gradient-sidebar-header);
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  color: var(--muted);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+  background: var(--modal-close-bg);
+  border: 1px solid var(--modal-close-border);
+}
+
+.close-btn:hover {
+  color: var(--text);
+  background: var(--modal-close-hover-bg);
+  transform: scale(1.1);
+}
+
+.chat-list-item.selected {
+  border-color: var(--chat-control-selected-border);
+  box-shadow: var(--chat-control-selected-shadow-inner),
+    var(--chat-control-selected-shadow);
+}
+
+.chat-list-item.selected .chat-title {
+  color: var(--accent);
+}
+
+.chat-select-checkbox {
+  margin-right: 10px;
+  accent-color: var(--accent);
+}
+
+.chat-list-item .chat-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.chat-list-item.active .chat-title {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.chat-list-item .chat-meta {
+  color: var(--muted);
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-list-item .chat-controls {
+  display: flex;
+  gap: 4px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.chat-list-item .chat-delete-btn,
+.chat-list-item .chat-copy-btn {
+  background: var(--chat-control-gradient);
+  border: 1px solid var(--chat-control-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.chat-list-item .chat-delete-btn:hover,
+.chat-list-item .chat-copy-btn:hover {
+  color: var(--accent-contrast);
+  background: var(--gradient-control-button-hover);
+  border-color: var(--chat-control-hover-border);
+  box-shadow: var(--chat-control-shadow);
+  transform: translateY(-2px);
+}
+
+/* =============================
+   Generic Card Grid System (Flexbox-based)
+   ============================= */
+
+.card-grid-system {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: flex-start; /* Evita que las tarjetas se estiren verticalmente */
+  justify-content: flex-start; /* Alinea las tarjetas al inicio */
+  height: 100%; /* Asegura que el contenedor ocupe toda la altura disponible */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+}
+
+/* Estilos para las tarjetas dentro del sistema de rejilla */
+.card-grid-system > * {
+  flex: 1 1 260px; /* Permite que las tarjetas crezcan y se encojan, con un tamaño base de 260px */
+  max-width: calc(50% - 10px); /* Dos columnas con un gap de 20px */
+}
+
+@media (max-width: 600px) {
+  .card-grid-system > * {
+    max-width: 100%; /* Una columna en pantallas pequeñas */
+  }
+}
+
+/* =============================
+   Settings panel styling
+   ============================= */
+
+.settings-grid {
+  composes: card-grid-system;
+}
+
+.settings-card {
+  composes: card from './cards.css';
+}
+
+.settings-card header {
+  margin-bottom: 16px;
+}
+
+.settings-card header h5 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text, var(--text-main));
+}
+
+.settings-card header p {
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted, var(--text-soft));
+}
+
+.settings-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.settings-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted, rgba(229, 231, 255, 0.7));
+}
+
+.settings-field input,
+.settings-field select,
+.settings-field textarea {
+  background: var(--panel, var(--bg-alt));
+  color: var(--text, var(--text-main));
+  border: 1px solid var(--border, var(--border-subtle-strong));
+  border-radius: var(--radius, 14px);
+  padding: 10px 12px;
+  font-size: 0.95rem;
+  transition: border-color var(--transition, 0.25s ease),
+              box-shadow var(--transition, 0.25s ease);
+}
+
+.settings-field input:focus,
+.settings-field select:focus,
+.settings-field textarea:focus {
+  outline: none;
+  border-color: var(--accent, var(--accent-a35));
+  box-shadow: 0 0 0 3px var(--accent-a18);
+}
+
+.settings-field textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.settings-field input[type="range"] {
+  padding: 0;
+  height: 4px;
+  border-radius: 999px;
+}
+
+.settings-field input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  accent-color: var(--accent, #6366f1);
+}
+
+.settings-card--theme {
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.theme-chip {
+  padding: 8px 16px;
+  border-radius: var(--radius, 14px);
+  background: var(--surface-hover, var(--white-a04));
+  border: 1px solid var(--border, var(--border-subtle-strong));
+  color: var(--text, var(--text-main));
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-chip:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent, var(--accent-a35));
+  box-shadow: 0 6px 18px var(--accent-a18);
+}
+
+.theme-chip.active {
+  background: var(--accent-gradient, var(--button-gradient));
+  color: var(--color-white);
+  border-color: transparent;
+  box-shadow: var(--accent-shadow, var(--shadow-accent-strong));
+}
+
+.theme-selector__hint {
+  margin-top: 14px;
+  font-size: 0.85rem;
+  color: var(--text-muted, var(--text-soft));
+}
+
+@media (max-width: 720px) {
+  .settings-card {
+    padding: 16px;
+  }
+
+  .theme-selector {
+    gap: 10px;
+  }
+
+  .theme-chip {
+    flex: 1 1 calc(50% - 10px);
+    text-align: center;
+  }
+}

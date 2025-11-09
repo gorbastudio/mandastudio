@@ -1,0 +1,136 @@
+/* Model Cards */
+.model-cards {
+  /* Estas propiedades serán manejadas por .card-grid-system */
+  /* display: grid; */
+  /* grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
+  /* gap: 18px; */
+  width: 100%;
+}
+
+.model-card {
+  composes: card from './cards.css'; /* Hereda estilos base de la clase .card */
+  position: relative;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-main);
+  box-shadow: var(--shadow);
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+  font: inherit;
+  outline: none;
+}
+
+.model-card::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(74, 74, 74, 0.22), rgba(122, 122, 122, 0.18)); /* Usar colores grises */
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.model-card:hover,
+.model-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+}
+
+.model-card:hover::after,
+.model-card:focus-visible::after {
+  opacity: 1;
+}
+
+.model-card:focus-visible {
+  box-shadow: 0 0 0 3px var(--accent-weak), var(--shadow-strong);
+}
+
+.model-card.active {
+  border: 1px solid var(--accent-secondary);
+  box-shadow: var(--shadow-strong);
+}
+
+.model-card.active::after {
+  opacity: 1;
+}
+
+.model-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.model-card-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: 0.01em;
+}
+
+.model-card-subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.model-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.model-card-body p {
+  margin: 0;
+  color: var(--text-main);
+}
+
+.model-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.model-card-meta span {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.model-card-meta strong {
+  color: var(--text-main);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  background: var(--accent-weak);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .model-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .model-card {
+    padding: 18px;
+  }
+}

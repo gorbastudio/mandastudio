@@ -1,0 +1,96 @@
+/* Global Card Styles */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  transition: background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+  color: var(--text-main);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--accent-secondary);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.card-body p {
+  margin: 0;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--accent-weak);
+  border: 1px solid var(--accent-secondary);
+  color: var(--button-icon-color);
+  font-size: 0.8rem;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: all var(--transition-medium);
+}
+
+.card-action:hover {
+  background: var(--accent);
+  color: var(--text-inverse);
+}
+
+.card-action svg {
+  fill: var(--button-icon-color);
+  stroke: var(--button-icon-color);
+}
+
+.card-action:hover svg {
+  fill: var(--text-inverse);
+  stroke: var(--text-inverse);
+}

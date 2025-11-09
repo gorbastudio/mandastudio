@@ -1,0 +1,37 @@
+.panel-layout {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.nav-panel {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  /* Eliminado overflow-y: auto de aquí */
+}
+
+#panel-A {
+  /* Eliminado overflow-y: auto de aquí */
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.panel-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.panel-body {
+  flex-grow: 1;
+  overflow-y: auto; /* Allow vertical scrolling */
+}

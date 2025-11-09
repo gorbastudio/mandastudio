@@ -1,0 +1,196 @@
+/* Messages */
+.msg {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding-left: 5px;
+  border-radius: var(--radius);
+  background: var(--gradient-dark-panel);
+  border: 1px solid var(--message-surface-border);
+  box-shadow: var(--message-shadow);
+  transition: all var(--transition-medium);
+  width: 100%;
+  align-self: stretch;
+}
+
+.msg--user {
+  background: var(--message-user-bg);
+  border: 1px solid var(--message-user-border);
+}
+
+.msg--assistant {
+  background: var(--message-assistant-bg);
+}
+
+.msg-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.msg-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--message-avatar-bg);
+  flex-shrink: 0;
+}
+
+.msg-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.msg-timestamp {
+  font-size: 0.7rem;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.msg-content {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.msg .msg-content > * {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.msg-content pre {
+  background: var(--code-block-bg);
+  border: 1px solid var(--code-block-border);
+  border-radius: var(--radius);
+  padding: 0;
+  overflow-x: auto;
+  margin: 2px 0;
+  position: relative;
+  display: block;
+}
+
+#messages {
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 160px;
+}
+
+.messages-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: var(--messages-background-opacity);
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--messages-background-image);
+}
+
+#messages > *:not(.messages-background) {
+  position: relative;
+  z-index: 1;
+}
+
+.msg-content pre::after {
+  content: "";
+  display: block;
+  height: 12px;
+}
+
+.msg-content code {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.85rem;
+}
+
+.msg-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+
+.msg-actions .msg-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background: var(--code-action-bg);
+  box-shadow: none;
+  color: var(--text-secondary);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+  cursor: pointer;
+}
+
+.msg-actions .msg-action svg {
+  width: 14px;
+  height: 14px;
+}
+
+.msg-actions .msg-action:hover,
+.msg-actions .msg-action:focus-visible {
+  background: var(--code-action-hover-bg);
+  box-shadow: var(--code-action-hover-shadow);
+  color: var(--accent-contrast);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.msg-actions .msg-action:active {
+  transform: scale(0.95);
+  box-shadow: var(--code-action-active-shadow);
+}
+
+.code-copy-btn {
+  position: absolute;
+  bottom: 2px;
+  left: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.code-copy-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+  stroke: currentColor;
+}
+
+.code-copy-btn:hover,
+.code-copy-btn:focus-visible {
+  background: var(--accent-weak);
+  border-color: var(--accent-secondary);
+  box-shadow: var(--shadow-strong);
+  color: var(--accent-contrast);
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.code-copy-btn:active {
+  transform: scale(0.95);
+  box-shadow: var(--shadow-strong);
+}

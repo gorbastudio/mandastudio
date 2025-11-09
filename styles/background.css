@@ -1,0 +1,59 @@
+/* Background layer utilities extracted from JS */
+
+.messages-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: var(--messages-background-opacity, 0.25);
+  pointer-events: none;
+  z-index: 0;
+  background-image: var(--messages-background-image);
+}
+
+.messages-background.is-hidden {
+  opacity: 0;
+}
+
+.messages-background.is-visible {
+  opacity: var(--messages-background-opacity, 0.25);
+}
+
+#messages > *:not(.messages-background) {
+  position: relative;
+  z-index: 1;
+}
+
+.card--gradient-outline::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: var(--add-api-key-pulse-gradient);
+  border-radius: var(--radius);
+  z-index: -1;
+  opacity: 0.1;
+  animation: add-card-pulse 3s ease-in-out infinite;
+}
+
+.card--dashed-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px dashed var(--add-api-key-border);
+  border-radius: var(--radius);
+  pointer-events: none;
+}
+
+@keyframes add-card-pulse {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+
+  50% {
+    opacity: 0.3;
+  }
+}
